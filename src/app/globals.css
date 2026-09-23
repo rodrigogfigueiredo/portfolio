@@ -7,7 +7,7 @@
   --ink: #152b45;
   --ink-deep: #0d2440;
   --muted: #4c627c;
-  --faint: #647c98;
+  --faint: #59718d;
   --line: #cbdff0;
   --line-strong: #a8c7e0;
   --accent: #1a5caa;
@@ -78,7 +78,7 @@ svg { display: block; }
 .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 91%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
 .site-header__inner { min-height: 77px; display: flex; align-items: center; gap: 2.5rem; }
 .brand { display: inline-flex; align-items: center; gap: .85rem; margin-right: auto; white-space: nowrap; }
-.brand__mark { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 13px; background: var(--ink-deep); color: var(--bg); font-size: 1.25rem; font-weight: 850; letter-spacing: -.12em; padding-right: .11em; }
+.brand__mark { display: flex; align-items: center; justify-content: center; flex: none; width: 43px; height: 43px; border-radius: 13px; background: var(--ink-deep); color: var(--bg); font-size: 1.16rem; font-weight: 850; letter-spacing: -.08em; white-space: nowrap; }
 .brand__dot { color: var(--accent-bright); }
 .brand__name { font-size: .86rem; font-weight: 800; letter-spacing: -.01em; }
 .site-nav { display: flex; align-items: center; gap: clamp(1.1rem, 3vw, 2.5rem); }

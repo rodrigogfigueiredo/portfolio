@@ -8,7 +8,7 @@ export function SiteHeader() {
       <header className="site-header">
         <div className="shell site-header__inner">
           <Link className="brand" href="/" aria-label="Rodrigo Figueiredo, home">
-            <span className="brand__mark">r<span className="brand__dot">.</span>f</span>
+            <span className="brand__mark" aria-hidden="true">r.f<span className="brand__dot">.</span></span>
             <span className="brand__name">Rodrigo Figueiredo</span>
           </Link>
           <nav className="site-nav" aria-label="Main navigation">
