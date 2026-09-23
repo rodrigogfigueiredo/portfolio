@@ -3,6 +3,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rodrigo-figueiredo.alight-gleam-6993.chatgpt.site"),
   title: { default: "Rodrigo Figueiredo — AI Engineer", template: "%s — Rodrigo Figueiredo" },
   description:
     "Rodrigo Figueiredo is an AI Engineer who turns human problems into useful systems. Explore ATLaS, GranitOS, and Visol Timesheet.",
