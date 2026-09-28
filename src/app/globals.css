@@ -167,6 +167,26 @@ svg { display: block; }
 .note-icon { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 1.2rem; }
 .note-icon--puzzle { font-size: 1rem; }
 
+.background-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2.5rem, 7vw, 7rem); margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); }
+.background-grid > div { min-width: 0; }
+.background-title { margin: 0 0 1.5rem; color: var(--ink-deep); font-size: 1.45rem; letter-spacing: -.04em; }
+.experience-list, .education-list { list-style: none; margin: 0; padding: 0; }
+.experience-list li { padding: 0 0 1.8rem 1.5rem; border-left: 1px solid var(--line-strong); position: relative; }
+.experience-list li::before { content: ""; position: absolute; top: .25rem; left: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.background-period { color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .03em; }
+.background-grid h4 { margin: .55rem 0 .5rem; font-size: 1.05rem; line-height: 1.5; letter-spacing: -.02em; }
+.background-grid h4 span { color: var(--muted); font-weight: 500; }
+.background-grid p { margin: 0; color: var(--muted); font-size: .91rem; line-height: 1.75; }
+.earlier-experience { border-top: 1px solid var(--line); }
+.earlier-experience summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding-block: .85rem; color: var(--accent); font-size: .83rem; font-weight: 800; cursor: pointer; list-style: none; }
+.earlier-experience summary::-webkit-details-marker { display: none; }
+.earlier-experience summary span { font-size: 1.3rem; }
+.earlier-experience[open] summary span { transform: rotate(45deg); }
+.earlier-experience .experience-list { margin-top: 1rem; }
+.background-aside { display: flex; flex-direction: column; gap: 2.5rem; }
+.education-list li + li { margin-top: 1.5rem; }
+.background-aside .method-tags { margin-top: 0; }
+
 .method-section { background: var(--bg); }
 .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .method-card { position: relative; min-height: 310px; padding: 2rem; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); overflow: hidden; }
@@ -202,6 +222,7 @@ svg { display: block; }
 .case-page__back a span { font-size: 1.2rem; }
 .case-hero { display: grid; grid-template-columns: 1.1fr .65fr; align-items: end; gap: 3rem; padding-block: clamp(4.5rem, 7vw, 7rem) 3.5rem; }
 .case-hero h1 { margin: 1rem 0 .4rem; color: var(--ink-deep); font-size: clamp(4.5rem, 8.8vw, 9rem); font-weight: 800; line-height: .95; letter-spacing: -.085em; }
+.case-hero--long-title h1 { font-size: clamp(3.4rem, 6vw, 6.8rem); }
 .case-hero__context { margin: 0; color: var(--accent); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 2.8vw, 2.7rem); font-style: italic; line-height: 1.2; letter-spacing: -.04em; }
 .case-hero__summary { max-width: 410px; margin: 0 0 .4rem; color: var(--muted); font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.55; }
 .case-art { padding: 0; }
@@ -275,6 +296,7 @@ svg { display: block; }
   .project-card__art { min-height: 230px; }
   .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
   .about-content { padding-top: 0; }
+  .background-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .method-grid { grid-template-columns: 1fr; }
   .method-card { min-height: 245px; }
   .contact-layout { align-items: start; flex-direction: column; }

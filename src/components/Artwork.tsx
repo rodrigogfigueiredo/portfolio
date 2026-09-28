@@ -20,9 +20,41 @@ export function LabArtwork() {
 }
 
 export function ProjectArtwork({ slug }: { slug: Project["slug"] }) {
+  if (slug === "influencer-monitor") return <InfluencerMonitorArtwork />;
   if (slug === "atlas") return <AtlasArtwork />;
   if (slug === "granitos") return <GranitosArtwork />;
   return <VisolArtwork />;
+}
+
+function InfluencerMonitorArtwork() {
+  return (
+    <svg className="project-art-svg" viewBox="0 0 680 420" role="img" aria-label="Conceptual illustration of a video frame with a detected product and brand bounding box">
+      <defs><linearGradient id="influencer-bg" x1="0" y1="0" x2="1" y2="1"><stop stopColor="var(--art-gradient-start)" /><stop offset="1" stopColor="var(--art-gradient-end)" /></linearGradient></defs>
+      <rect width="680" height="420" rx="28" fill="url(#influencer-bg)" />
+      <path d="M0 84h680M0 168h680M0 252h680M0 336h680M85 0v420M170 0v420M255 0v420M340 0v420M425 0v420M510 0v420M595 0v420" stroke="var(--art-grid)" />
+      <text x="40" y="49" className="art-label">FRAME / DETECT / IDENTIFY</text>
+      <rect x="48" y="79" width="396" height="269" rx="18" fill="var(--art-paper)" stroke="var(--art-outline)" strokeWidth="2" />
+      <path d="M49 122h394" stroke="var(--art-outline)" strokeWidth="2" />
+      <circle cx="73" cy="101" r="5" fill="var(--art-accent)" />
+      <path d="M90 101h106" stroke="var(--art-rule)" strokeWidth="6" strokeLinecap="round" />
+      <circle cx="136" cy="178" r="28" fill="var(--art-soft)" />
+      <path d="M79 286c0-58 28-78 57-78s57 20 57 78" fill="var(--art-soft)" />
+      <rect x="259" y="173" width="81" height="120" rx="17" fill="var(--art-strong)" />
+      <rect x="278" y="156" width="43" height="24" rx="6" fill="var(--art-accent)" />
+      <circle cx="299" cy="229" r="19" fill="var(--art-inverse)" />
+      <path d="m290 229 6 6 12-14" stroke="var(--art-strong)" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="240" y="143" width="120" height="164" rx="7" fill="none" stroke="var(--art-accent)" strokeWidth="3" strokeDasharray="8 5" />
+      <path d="M361 225h107m-11-10 11 10-11 10" stroke="var(--art-strong)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="483" y="151" width="150" height="155" rx="15" fill="var(--art-strong)" />
+      <text x="501" y="185" className="art-label" style={{ fill: "var(--art-inverse)" }}>BRAND FOUND</text>
+      <path d="M503 212h108M503 232h77" stroke="var(--art-inverse)" strokeWidth="6" opacity=".65" strokeLinecap="round" />
+      <text x="503" y="277" className="art-label" style={{ fill: "var(--art-inverse)" }}>BOX + TIME</text>
+      <path d="M70 371h540" stroke="var(--art-outline)" strokeWidth="3" strokeLinecap="round" />
+      <rect x="145" y="363" width="66" height="16" rx="5" fill="var(--art-accent)" />
+      <rect x="281" y="363" width="104" height="16" rx="5" fill="var(--art-strong)" />
+      <rect x="452" y="363" width="44" height="16" rx="5" fill="var(--art-accent)" />
+    </svg>
+  );
 }
 
 function AtlasArtwork() {

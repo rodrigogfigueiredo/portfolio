@@ -1,7 +1,8 @@
 # Rodrigo Figueiredo — Portfolio
 
-The source for [my portfolio](https://rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site/): a small, content-led site about human problems and useful systems. It introduces my AI engineering work and tells three short project stories:
+The source for [my portfolio](https://rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site/): a small, content-led site about human problems and useful systems. It introduces my GenAI engineering work, professional background, and four short project stories:
 
+- **Influencer Monitor** — my current computer vision and generative AI work at DEUS, detecting logos and identifying brands in Instagram and TikTok images and videos. This is ongoing work without numerical impact claims.
 - **ATLaS** — an LLM-powered HR knowledge platform developed for my master's thesis at DEUS. Its published figures are evaluation results.
 - **GranitOS** — an operations application for Granitos de Boelhe. The roughly three days of administrative work saved per month is a business estimate.
 - **Visol Timesheet** — an attendance and working-time application for Visol Proteção Solar, with a qualitative outcome.
@@ -42,11 +43,14 @@ The static output is written to `out/`; `npm start` serves it at <http://localho
 | File | What to edit |
 | --- | --- |
 | `src/content/projects.ts` | Case-study copy, outcomes, tags, and workflow labels |
+| `src/content/profile.ts` | Experience, education, and technical focus |
 | `src/app/page.tsx` | Homepage introduction, About, method, and contact copy |
 | `src/components/Artwork.tsx` | Conceptual project illustrations |
 | `src/app/globals.css` | Colors, layout, motion, and responsive styles |
 
-Keep outcome language precise: ATLaS figures are evaluation results; GranitOS time saved is an estimate; Visol Timesheet has no numerical impact claim. Do not add real HR, salary, attendance, client, or business records to the public site.
+Professional background and the Influencer Monitor description were checked against my LinkedIn profile on 28 September 2026.
+
+Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures are evaluation results; GranitOS time saved is an estimate; Visol Timesheet has no numerical impact claim. Do not add real HR, salary, attendance, client, or business records to the public site.
 
 ## Deployment
 

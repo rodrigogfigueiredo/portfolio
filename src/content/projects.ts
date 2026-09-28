@@ -1,5 +1,5 @@
 export type Project = {
-  slug: "atlas" | "granitos" | "visol-timesheet";
+  slug: "influencer-monitor" | "atlas" | "granitos" | "visol-timesheet";
   number: string;
   title: string;
   category: string;
@@ -21,8 +21,37 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "atlas",
+    slug: "influencer-monitor",
     number: "01",
+    title: "Influencer Monitor",
+    category: "Computer vision · GenAI at DEUS",
+    context: "Making brand presence visible",
+    summary:
+      "Computer vision and generative AI pipelines that detect logos and identify brands in Instagram and TikTok images and videos.",
+    cardLine: "From social media frames to brands, boxes, and timestamps.",
+    signal: "Images + video",
+    signalLabel: "brand detection across Instagram and TikTok",
+    role:
+      "I’ve worked as a GenAI Engineer at DEUS on Influencer Monitor since September 2026, developing logo detection and brand identification capabilities.",
+    problem:
+      "Analysing brand presence in social media means finding logos, branded products, and wordmarks in varied images and videos, then identifying the brand and where and when it appears.",
+    approach: [
+      "Build Python pipelines that combine OWLv2 object detection with multimodal models through Azure OpenAI to locate and identify brand appearances.",
+      "Develop asynchronous GPU batch inference on Azure Machine Learning, with video frame sampling and scene detection to produce bounding boxes and timestamps.",
+      "Create evaluation datasets and tooling to investigate missed brands and guide model and prompt improvements. Integrate Microsoft Foundry, Blob Storage, Service Bus, and Azure identity-based authentication.",
+    ],
+    outcome:
+      "My ongoing work covers brand detections with bounding boxes and video timestamps, alongside evaluation tooling to measure detection quality and investigate missed brands.",
+    learning:
+      "My focus is the complete path from preparing media to locating a logo, identifying its brand, and evaluating the result. Detection quality and the surrounding processing workflow both need careful attention.",
+    workflow: ["Sample media", "Locate + identify brands", "Boxes + timestamps"],
+    methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "Azure Machine Learning", "Microsoft Foundry", "Blob Storage", "Service Bus", "Evaluation"],
+    impactNote: "Project description reflects my current role, which began in September 2026.",
+    sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
+  },
+  {
+    slug: "atlas",
+    number: "02",
     title: "ATLaS",
     category: "AI engineering · Master's thesis at DEUS",
     context: "HR knowledge, made usable",
@@ -32,7 +61,7 @@ export const projects: Project[] = [
     signal: "62–77%",
     signalLabel: "less manual turnaround effort in evaluation",
     role:
-      "I designed and developed ATLaS during my AI Engineer internship at DEUS as my master's dissertation project.",
+      "I designed and developed ATLaS (Automated Talent Library and Search) during my AI Engineer internship at DEUS, from October 2025 to July 2026, as my master's dissertation project.",
     problem:
       "Creating client-ready talent profiles meant navigating unstructured documents, inconsistent formats, and manual review. Finding the right expertise across those documents was another slow, context-heavy task.",
     approach: [
@@ -51,7 +80,7 @@ export const projects: Project[] = [
   },
   {
     slug: "granitos",
-    number: "02",
+    number: "03",
     title: "GranitOS",
     category: "Product engineering · Operations",
     context: "An operating system for the quarry",
@@ -79,7 +108,7 @@ export const projects: Project[] = [
   },
   {
     slug: "visol-timesheet",
-    number: "03",
+    number: "04",
     title: "Visol Timesheet",
     category: "Product engineering · Attendance",
     context: "Working time without guesswork",

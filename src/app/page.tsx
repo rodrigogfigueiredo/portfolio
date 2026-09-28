@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/SiteChrome";
 import { LabArtwork, ProjectArtwork } from "@/components/Artwork";
 import { projects } from "@/content/projects";
+import { education, experience, technicalFocus } from "@/content/profile";
 
 export default function HomePage() {
   return (
@@ -9,9 +10,9 @@ export default function HomePage() {
       <section className="hero section-grid" aria-labelledby="hero-title">
         <div className="shell hero__grid">
           <div className="hero__copy">
-            <div className="eyebrow"><span className="eyebrow__line" /> AI ENGINEER · PORTO, PORTUGAL</div>
+            <div className="eyebrow"><span className="eyebrow__line" /> GENAI ENGINEER · PORTO, PORTUGAL</div>
             <h1 id="hero-title">Human problems.<br /><span>Useful systems.</span></h1>
-            <p className="hero__intro">I’m Rodrigo. I build grounded AI and thoughtful software that helps people spend less time wrestling with complexity.</p>
+            <p className="hero__intro">I’m Rodrigo, a GenAI Engineer at DEUS. I build computer vision and generative AI systems that make sense of real-world content, and thoughtful software for everyday work.</p>
             <div className="hero__actions">
               <Link className="button button--primary" href="/#work">Explore my work <ArrowIcon /></Link>
               <a className="text-link" href="mailto:rodrigofigueiredo.hq@gmail.com">Say hello <ArrowIcon diagonal /></a>
@@ -20,7 +21,7 @@ export default function HomePage() {
           </div>
           <LabArtwork />
         </div>
-        <div className="shell hero__bottom"><span>SCROLL TO EXPLORE</span><span className="hero__bottom-line" /><span>01 / 03</span></div>
+        <div className="shell hero__bottom"><span>SCROLL TO EXPLORE</span><span className="hero__bottom-line" /><span>01 / {String(projects.length).padStart(2, "0")}</span></div>
       </section>
 
       <section className="section work-section" id="work" aria-labelledby="work-title">
@@ -31,7 +32,7 @@ export default function HomePage() {
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
-              <Link className={`project-card project-card--${project.slug} ${index === 0 ? "project-card--featured" : ""}`} key={project.slug} href={`/work/${project.slug}/`} aria-label={`Read the ${project.title} case study`}>
+              <Link className={`project-card project-card--${project.slug} ${index < 2 ? "project-card--featured" : ""}`} key={project.slug} href={`/work/${project.slug}/`} aria-label={`Read the ${project.title} case study`}>
                 <div className="project-card__art"><ProjectArtwork slug={project.slug} /></div>
                 <div className="project-card__body">
                   <div className="project-card__meta"><span>{project.number} / {project.category}</span><span className="round-arrow"><ArrowIcon diagonal /></span></div>
@@ -49,11 +50,52 @@ export default function HomePage() {
         <div className="shell about-layout">
           <div className="about-intro"><p className="eyebrow">02 — ABOUT THE HUMAN</p><h2 id="about-title">I like the space between <em>what is</em> and <em>what could be.</em></h2></div>
           <div className="about-content">
-            <p className="about-lead">I’m a GenAI Engineer at DEUS with an MSc in Artificial Intelligence and a BSc in Computer Science from FEUP.</p>
-            <p>I care about the full journey from understanding a problem to making a product people can rely on. That might mean grounded retrieval and careful evaluation, or a simpler way for a team to record the work they do every day.</p>
+            <p className="about-lead">I’m a GenAI Engineer at DEUS, currently working on Influencer Monitor. I hold an MSc in Artificial Intelligence and a BSc in Computer Science and Engineering from FEUP.</p>
+            <p>My current work brings together computer vision, multimodal models, and Azure to detect logos and identify brands in social media. Before that, I built ATLaS for my master’s dissertation: a platform for automated talent profiles and grounded conversational search.</p>
+            <p>I care about the full journey from understanding a problem to making a product people can rely on, whether that means careful AI evaluation or a clearer way to manage everyday work.</p>
             <div className="about-notes">
               <div><span className="note-icon" aria-hidden="true">♫</span><span>Made of music</span></div>
               <div><span className="note-icon note-icon--puzzle" aria-hidden="true">✳</span><span>And cool puzzles</span></div>
+            </div>
+          </div>
+        </div>
+        <div className="shell background-grid">
+          <div>
+            <h3 className="background-title">Experience</h3>
+            <ol className="experience-list">
+              {experience.slice(0, 2).map((item) => (
+                <li key={`${item.organisation}-${item.role}`}>
+                  <span className="background-period">{item.period}</span>
+                  <h4>{item.role} <span>at {item.organisation}</span></h4>
+                  <p>{item.description}</p>
+                </li>
+              ))}
+            </ol>
+            <details className="earlier-experience">
+              <summary>Earlier chapters <span aria-hidden="true">+</span></summary>
+              <ol className="experience-list">
+                {experience.slice(2).map((item) => (
+                  <li key={`${item.organisation}-${item.role}`}>
+                    <span className="background-period">{item.period}</span>
+                    <h4>{item.role} <span>at {item.organisation}</span></h4>
+                    <p>{item.description}</p>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </div>
+          <div className="background-aside">
+            <div>
+              <h3 className="background-title">Education</h3>
+              <ul className="education-list">
+                {education.map((item) => (
+                  <li key={item.degree}><span className="background-period">{item.period}</span><h4>{item.degree}</h4><p>{item.institution}</p></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="background-title">Technical focus</h3>
+              <div className="method-tags">{technicalFocus.map((skill) => <span key={skill}>{skill}</span>)}</div>
             </div>
           </div>
         </div>

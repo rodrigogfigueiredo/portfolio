@@ -4,15 +4,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site"),
-  title: { default: "Rodrigo Figueiredo — AI Engineer", template: "%s — Rodrigo Figueiredo" },
+  title: { default: "Rodrigo Figueiredo — GenAI Engineer", template: "%s — Rodrigo Figueiredo" },
   description:
-    "Rodrigo Figueiredo is an AI Engineer who turns human problems into useful systems. Explore ATLaS, GranitOS, and Visol Timesheet.",
+    "GenAI Engineer at DEUS working on computer vision and brand detection for Influencer Monitor. Explore my work in generative AI and practical software.",
   applicationName: "Rodrigo Figueiredo — Portfolio",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Rodrigo Figueiredo — AI Engineer",
-    description: "Human problems, useful systems. AI engineering and practical products built with curiosity.",
+    title: "Rodrigo Figueiredo — GenAI Engineer",
+    description: "Computer vision, generative AI, and practical products. Explore Influencer Monitor, ATLaS, GranitOS, and Visol Timesheet.",
   },
 };
 

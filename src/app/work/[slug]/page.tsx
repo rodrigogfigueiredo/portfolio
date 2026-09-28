@@ -27,8 +27,8 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <main id="main" className="case-page">
-      <div className="shell case-page__back"><Link href="/#work"><span aria-hidden="true">←</span> All projects</Link><span>{project.number} / 03</span></div>
-      <header className="shell case-hero">
+      <div className="shell case-page__back"><Link href="/#work"><span aria-hidden="true">←</span> All projects</Link><span>{project.number} / {String(projects.length).padStart(2, "0")}</span></div>
+      <header className={`shell case-hero ${project.slug === "influencer-monitor" ? "case-hero--long-title" : ""}`}>
         <div className="case-hero__heading"><p className="eyebrow">{project.category}</p><h1>{project.title}<span className="heading-period">.</span></h1><p className="case-hero__context">{project.context}</p></div>
         <p className="case-hero__summary">{project.summary}</p>
       </header>
