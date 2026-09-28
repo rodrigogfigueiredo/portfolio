@@ -17,11 +17,12 @@ export const metadata: Metadata = {
 };
 
 const themeScript = `(function(){try{var saved=localStorage.getItem('portfolio-theme');var dark=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=saved==='dark'||saved!=='light'&&dark?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}})();`;
+const legacyRedirectScript = `if(window.location.hostname==='rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site'){window.location.replace('https://rodrigofigueiredo.vercel.app'+window.location.pathname+window.location.search+window.location.hash);}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
+      <head><script dangerouslySetInnerHTML={{ __html: legacyRedirectScript }} /><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body id="top">
         <SiteHeader />
         {children}

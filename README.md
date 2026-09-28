@@ -56,6 +56,6 @@ Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures
 
 The portfolio is hosted on Vercel at <https://rodrigofigueiredo.vercel.app/>. `next.config.ts` enables static export, and `vercel.json` configures the Next.js build, locked dependency installation, and trailing slashes. Vercel's Next.js adapter manages the build output automatically.
 
-Import the personal GitHub repository `rodrigogfigueiredo/portfolio` into the Vercel project `rodrigofigueiredo`, with `main` as the production branch. Vercel builds and publishes production updates from that branch and provides preview deployments for pull requests. No environment variables are needed.
+The Vercel project `rodrigofigueiredo` is connected to the personal GitHub repository `rodrigogfigueiredo/portfolio`, with `main` as the production branch. Vercel builds and publishes production updates from that branch and provides preview deployments for pull requests. No environment variables are needed.
 
-Build and inspect the site before publishing changes. `.vercel/` contains local project links and is excluded from Git. `.openai/hosting.json` records the previous ChatGPT Sites deployment.
+Build and inspect the site before publishing changes. `.vercel/` contains local project links and is excluded from Git. `.openai/hosting.json` records the previous ChatGPT Sites deployment, which redirects visitors to Vercel using a browser script while preserving the path, query, and fragment. The redirect requires JavaScript; the old pages remain readable without it.
