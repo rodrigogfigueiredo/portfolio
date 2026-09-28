@@ -54,7 +54,7 @@ Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures
 
 ## Deployment
 
-The portfolio is hosted on Vercel at <https://rodrigofigueiredo.vercel.app/>. `next.config.ts` enables static export, and `vercel.json` configures the Next.js build, locked dependency installation, `out/` output directory, and trailing slashes.
+The portfolio is hosted on Vercel at <https://rodrigofigueiredo.vercel.app/>. `next.config.ts` enables static export, and `vercel.json` configures the Next.js build, locked dependency installation, and trailing slashes. Vercel's Next.js adapter manages the build output automatically.
 
 Import the personal GitHub repository `rodrigogfigueiredo/portfolio` into the Vercel project `rodrigofigueiredo`, with `main` as the production branch. Vercel builds and publishes production updates from that branch and provides preview deployments for pull requests. No environment variables are needed.
 
