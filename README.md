@@ -1,6 +1,6 @@
 # Rodrigo Figueiredo — Portfolio
 
-The source for [my portfolio](https://rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site/): a small, content-led site about human problems and useful systems. It introduces my GenAI engineering work, professional background, and four short project stories:
+The source for [my portfolio](https://rodrigofigueiredo.vercel.app/): a small, content-led site about human problems and useful systems. It introduces my GenAI engineering work, professional background, and four short project stories:
 
 - **Influencer Monitor** — my current computer vision and generative AI work at DEUS, detecting logos and identifying brands in Instagram and TikTok images and videos. This is ongoing work without numerical impact claims.
 - **ATLaS** — an LLM-powered HR knowledge platform developed for my master's thesis at DEUS. Its published figures are evaluation results.
@@ -54,6 +54,8 @@ Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures
 
 ## Deployment
 
-`next.config.ts` enables static export. `.openai/hosting.json` points ChatGPT Sites to the `out/` directory. The same export can be served by another static host. Build and inspect the site before publishing changes.
+The portfolio is hosted on Vercel at <https://rodrigofigueiredo.vercel.app/>. `next.config.ts` enables static export, and `vercel.json` configures the Next.js build, locked dependency installation, `out/` output directory, and trailing slashes.
 
-The public site uses the generated ChatGPT Sites address; no custom domain is configured.
+Import the personal GitHub repository `rodrigogfigueiredo/portfolio` into the Vercel project `rodrigofigueiredo`, with `main` as the production branch. Vercel builds and publishes production updates from that branch and provides preview deployments for pull requests. No environment variables are needed.
+
+Build and inspect the site before publishing changes. `.vercel/` contains local project links and is excluded from Git. `.openai/hosting.json` records the previous ChatGPT Sites deployment.

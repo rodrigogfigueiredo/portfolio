@@ -3,7 +3,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rodrigo-figueiredo.figueiredo-rodrigo.chatgpt.site"),
+  metadataBase: new URL("https://rodrigofigueiredo.vercel.app"),
   title: { default: "Rodrigo Figueiredo — GenAI Engineer", template: "%s — Rodrigo Figueiredo" },
   description:
     "GenAI Engineer at DEUS working on computer vision and brand detection for Influencer Monitor. Explore my work in generative AI and practical software.",
