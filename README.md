@@ -1,10 +1,9 @@
 # Rodrigo Figueiredo — Portfolio
 
-The source for [my portfolio](https://rodrigofigueiredo.vercel.app/): a small, content-led site about human problems and useful systems. It introduces my GenAI engineering work, professional background, and six short project stories:
+The source for [my portfolio](https://rodrigofigueiredo.vercel.app/): a small, content-led site about human problems and useful systems. It introduces my GenAI engineering work, professional background, and five short project stories:
 
-- **Influencer Monitor** — my current computer vision and generative AI work at DEUS, detecting logos and identifying brands in Instagram and TikTok images and videos. This is ongoing work without numerical impact claims.
+- **Influencer Monitor** — my current computer vision and generative AI work at DEUS, detecting logos and identifying brands in Instagram and TikTok images and videos, and rating how ad-like each post is. This is ongoing work; the ad classifier figures are offline test-set results.
 - **ATLaS** — an LLM-powered HR knowledge platform developed for my master's thesis at DEUS. Its published figures are evaluation results.
-- **Ad Classifier** — a multilingual model at DEUS that rates how ad-like Influencer Monitor posts are. Its figures are offline test-set results.
 - **Grounded** — my personal Android planner with Google Calendar sync, described qualitatively.
 - **GranitOS** — an operations application for Granitos de Boelhe. The roughly three days of administrative work saved per month is a business estimate.
 - **Visol Timesheet** — an attendance and working-time application for Visol Proteção Solar, with a qualitative outcome.
@@ -52,7 +51,7 @@ The static output is written to `out/`; `npm start` serves it at <http://localho
 
 Professional background and the Influencer Monitor description were checked against my LinkedIn profile on 28 September 2026.
 
-Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures are evaluation results; GranitOS time saved is an estimate; Visol Timesheet has no numerical impact claim; Ad Classifier figures are offline test-set results; Grounded is a personal project without numerical impact claims. Do not add real HR, salary, attendance, client, or business records to the public site.
+Keep outcome language precise: Influencer Monitor is ongoing work; ATLaS figures are evaluation results; GranitOS time saved is an estimate; Visol Timesheet has no numerical impact claim; Grounded is a personal project without numerical impact claims. Do not add real HR, salary, attendance, client, or business records to the public site.
 
 ## Deployment
 
