@@ -22,7 +22,6 @@ export function LabArtwork() {
 export function ProjectArtwork({ slug }: { slug: Project["slug"] }) {
   if (slug === "influencer-monitor") return <InfluencerMonitorArtwork />;
   if (slug === "atlas") return <AtlasArtwork />;
-  if (slug === "ad-classifier") return <AdClassifierArtwork />;
   if (slug === "grounded") return <GroundedArtwork />;
   if (slug === "granitos") return <GranitosArtwork />;
   return <VisolArtwork />;
@@ -77,37 +76,6 @@ function AtlasArtwork() {
       <rect x="486" y="100" width="157" height="102" rx="12" fill="var(--art-paper)" stroke="var(--art-outline)" strokeWidth="2" /><circle cx="511" cy="132" r="12" fill="var(--art-soft)" /><path d="M534 128h81M534 143h63M504 173h113" stroke="var(--art-rule)" strokeWidth="7" strokeLinecap="round" />
       <rect x="501" y="223" width="143" height="91" rx="12" fill="var(--art-strong)" /><circle cx="530" cy="255" r="12" fill="none" stroke="var(--art-inverse)" strokeWidth="3" /><path d="m539 264 9 9" stroke="var(--art-inverse)" strokeWidth="3" strokeLinecap="round" /><path d="M558 251h56M518 290h96" stroke="var(--art-inverse)" strokeWidth="6" opacity=".7" strokeLinecap="round" />
       <circle cx="281" cy="116" r="5" fill="var(--art-accent)" /><path d="m442 91 7 7m0-7-7 7" stroke="var(--art-accent)" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function AdClassifierArtwork() {
-  return (
-    <svg className="project-art-svg" viewBox="0 0 680 420" role="img" aria-label="Illustration of a social post's text being scored on a scale from organic to ad">
-      <defs><linearGradient id="adclass-bg" x1="0" y1="0" x2="1" y2="1"><stop stopColor="var(--art-gradient-start)" /><stop offset="1" stopColor="var(--art-gradient-end)" /></linearGradient></defs>
-      <rect width="680" height="420" rx="28" fill="url(#adclass-bg)" />
-      <path d="M0 84h680M0 168h680M0 252h680M0 336h680M85 0v420M170 0v420M255 0v420M340 0v420M425 0v420M510 0v420M595 0v420" stroke="var(--art-grid)" />
-      <text x="40" y="49" className="art-label">READ / BLEND / RATE</text>
-      <rect x="52" y="82" width="196" height="262" rx="18" fill="var(--art-paper)" stroke="var(--art-outline)" strokeWidth="2" />
-      <circle cx="80" cy="110" r="12" fill="var(--art-soft)" />
-      <path d="M100 110h70" stroke="var(--art-rule)" strokeWidth="6" strokeLinecap="round" />
-      <rect x="70" y="134" width="160" height="96" rx="10" fill="var(--art-soft)" />
-      <path d="M72 254h120M72 274h146" stroke="var(--art-rule)" strokeWidth="7" strokeLinecap="round" />
-      <rect x="70" y="294" width="54" height="22" rx="11" fill="var(--art-accent)" />
-      <rect x="132" y="294" width="78" height="22" rx="11" fill="none" stroke="var(--art-outline)" strokeWidth="2" />
-      <path d="M262 213h40m-11-10 11 10-11 10" stroke="var(--art-strong)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <rect x="316" y="132" width="112" height="56" rx="12" fill="var(--art-paper)" stroke="var(--art-outline)" strokeWidth="2" />
-      <text x="336" y="166" className="art-label">TF-IDF</text>
-      <rect x="316" y="238" width="112" height="56" rx="12" fill="var(--art-strong)" />
-      <text x="338" y="272" className="art-label" style={{ fill: "var(--art-inverse)" }}>XLM-R</text>
-      <path d="M428 160c30 0 30 53 54 53M428 266c30 0 30-53 54-53" stroke="var(--art-strong)" strokeWidth="3" fill="none" strokeLinecap="round" />
-      <circle cx="496" cy="213" r="14" fill="var(--art-accent)" />
-      <rect x="530" y="98" width="104" height="230" rx="16" fill="var(--art-paper)" stroke="var(--art-outline)" strokeWidth="2" />
-      <rect x="566" y="120" width="32" height="56" rx="8" fill="var(--art-strong)" />
-      <rect x="566" y="184" width="32" height="56" rx="8" fill="var(--art-accent)" />
-      <rect x="566" y="248" width="32" height="56" rx="8" fill="var(--art-soft)" />
-      <text x="541" y="356" className="art-label">AD ↔ ORGANIC</text>
-      <path d="M548 213h-14" stroke="var(--art-strong)" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );
 }

@@ -32,7 +32,7 @@ export default function HomePage() {
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
-              <Link className={`project-card project-card--${project.slug} ${index < 2 ? "project-card--featured" : ""}`} key={project.slug} href={`/work/${project.slug}/`} aria-label={`Read the ${project.title} case study`}>
+              <Link className={`project-card project-card--${project.slug} ${index < 3 ? "project-card--featured" : ""}`} key={project.slug} href={`/work/${project.slug}/`} aria-label={`Read the ${project.title} case study`}>
                 <div className="project-card__art"><ProjectArtwork slug={project.slug} /></div>
                 <div className="project-card__body">
                   <div className="project-card__meta"><span>{project.number} / {project.category}</span><span className="round-arrow"><ArrowIcon diagonal /></span></div>

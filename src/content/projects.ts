@@ -1,5 +1,5 @@
 export type Project = {
-  slug: "influencer-monitor" | "atlas" | "ad-classifier" | "grounded" | "granitos" | "visol-timesheet";
+  slug: "influencer-monitor" | "atlas" | "grounded" | "granitos" | "visol-timesheet";
   number: string;
   title: string;
   category: string;
@@ -24,29 +24,30 @@ export const projects: Project[] = [
     slug: "influencer-monitor",
     number: "01",
     title: "Influencer Monitor",
-    category: "Computer vision · GenAI at DEUS",
+    category: "Computer vision · NLP · GenAI at DEUS",
     context: "Making brand presence visible",
     summary:
-      "Computer vision and generative AI pipelines that detect logos and identify brands in Instagram and TikTok images and videos.",
-    cardLine: "From social media frames to brands, boxes, and timestamps.",
+      "Computer vision, NLP, and generative AI pipelines that detect brands in Instagram and TikTok images and videos, and rate how likely each post is to be advertising.",
+    cardLine: "From social media posts to brands, timestamps, and an ad score.",
     signal: "Images + video",
     signalLabel: "brand detection across Instagram and TikTok",
     role:
-      "I’ve worked as a GenAI Engineer at DEUS on Influencer Monitor since September 2026, developing logo detection and brand identification capabilities.",
+      "I’ve worked as a GenAI Engineer at DEUS on Influencer Monitor since September 2026, developing logo detection and brand identification, and the new model behind its ad classifier.",
     problem:
-      "Analysing brand presence in social media means finding logos, branded products, and wordmarks in varied images and videos, then identifying the brand and where and when it appears.",
+      "Analysing brand presence in social media means finding logos, branded products, and wordmarks in varied images and videos, then identifying the brand and where and when it appears. Reviewers also need to find posts that look like advertising, across many European languages, whether or not the creator discloses it.",
     approach: [
       "Build Python pipelines that combine OWLv2 object detection with multimodal models through Azure OpenAI to locate and identify brand appearances.",
       "Develop asynchronous GPU batch inference on Azure Machine Learning, with video frame sampling and scene detection to produce bounding boxes and timestamps.",
       "Create evaluation datasets and tooling to investigate missed brands and guide model and prompt improvements. Integrate Microsoft Foundry, Blob Storage, Service Bus, and Azure identity-based authentication.",
+      "Rebuild the ad classifier: measure the production model as a baseline, correct inconsistent labels, then blend TF-IDF with disclosure features in eleven languages and a fine-tuned XLM-RoBERTa over captions, OCR text, and transcripts. Deploy it as an Azure ML batch endpoint with three classes: organic, questionable, and ad.",
     ],
     outcome:
-      "My ongoing work covers brand detections with bounding boxes and video timestamps, alongside evaluation tooling to measure detection quality and investigate missed brands.",
+      "My ongoing work covers brand detections with bounding boxes and video timestamps, alongside evaluation tooling to measure detection quality and investigate missed brands. On a held-out test set, the new ad classifier raised macro F1 from 0.38 to 0.63 (0.69 on posts with text), and posts it is unsure about now land in a middle band for people to check.",
     learning:
-      "My focus is the complete path from preparing media to locating a logo, identifying its brand, and evaluating the result. Detection quality and the surrounding processing workflow both need careful attention.",
-    workflow: ["Sample media", "Locate + identify brands", "Boxes + timestamps"],
-    methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "Azure Machine Learning", "Microsoft Foundry", "Blob Storage", "Service Bus", "Evaluation"],
-    impactNote: "Project description reflects my current role, which began in September 2026.",
+      "My focus is the complete path from preparing media to locating a logo, identifying its brand, and evaluating the result. On the ad classifier, the biggest gains came from looking closely at the data, and simple, explainable features still earned their place next to a transformer.",
+    workflow: ["Sample media + text", "Detect brands + ads", "Boxes, timestamps + ad score"],
+    methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "XLM-RoBERTa", "scikit-learn", "Azure Machine Learning", "Microsoft Foundry", "Blob Storage", "Service Bus", "Evaluation"],
+    impactNote: "Project description reflects my current role, which began in September 2026. Ad classifier figures come from my offline evaluation on held-out labelled posts.",
     sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
   },
   {
@@ -79,36 +80,8 @@ export const projects: Project[] = [
     sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
   },
   {
-    slug: "ad-classifier",
-    number: "03",
-    title: "Ad Classifier",
-    category: "Machine learning · NLP at DEUS",
-    context: "Telling sponsored posts from organic ones",
-    summary:
-      "A multilingual model that rates how likely an Instagram or TikTok post is to be undisclosed or disclosed advertising, for Influencer Monitor.",
-    cardLine: "From captions, on-screen text, and transcripts to an ad score.",
-    signal: "0.38 → 0.63",
-    signalLabel: "macro F1 on held-out posts, against the previous model",
-    role:
-      "I developed the new model behind Influencer Monitor's ad classifier at DEUS: dataset preparation, experiments, the final model, and its Azure ML scoring script.",
-    problem:
-      "Reviewers need to find posts that look like advertising, across many European languages, whether or not the creator discloses it. The previous model saw only part of each post and gave a single ad probability, so the uncertain middle was hard to use.",
-    approach: [
-      "Measured the production model on a labelled dataset first, so every experiment had a real baseline. Then reviewed and corrected labels where the errors pointed to inconsistent annotation.",
-      "Compared TF-IDF with hand-made disclosure features in eleven languages (sponsorship tags, gifted products, discount codes, age-gate hashtags), sentence embeddings, and a fine-tuned XLM-RoBERTa, all over captions, OCR text, and transcripts.",
-      "Shipped a blend of TF-IDF and XLM-RoBERTa with three classes (organic, questionable, ad), packaged as an Azure ML batch deployment with memory-aware dynamic batching, and checked that the deployed script reproduces the evaluated scores.",
-    ],
-    outcome:
-      "On the same held-out test set, macro F1 rose from 0.38 for the previous model to 0.63 for the blend (0.69 on posts with text), and the ad-versus-rest AUC reached 0.93. Posts the model is unsure about now land in a middle band for people to check.",
-    learning:
-      "The biggest gains came from looking closely at the data: a baseline, the labels, and the errors. Simple, explainable features still earned their place next to a transformer.",
-    workflow: ["Post text + OCR + transcript", "TF-IDF + XLM-R blend", "Ad score 0–10"],
-    methods: ["Python", "scikit-learn", "XLM-RoBERTa", "Transformers", "PyTorch", "Azure Machine Learning", "MLflow", "Evaluation"],
-    impactNote: "Figures come from my offline evaluation on a held-out test set of labelled posts.",
-  },
-  {
     slug: "grounded",
-    number: "04",
+    number: "03",
     title: "Grounded",
     category: "Android app · Personal project",
     context: "A calm daily planner",
@@ -137,7 +110,7 @@ export const projects: Project[] = [
   },
   {
     slug: "granitos",
-    number: "05",
+    number: "04",
     title: "GranitOS",
     category: "Product engineering · Operations",
     context: "An operating system for the quarry",
@@ -165,7 +138,7 @@ export const projects: Project[] = [
   },
   {
     slug: "visol-timesheet",
-    number: "06",
+    number: "05",
     title: "Visol Timesheet",
     category: "Product engineering · Attendance",
     context: "Working time without guesswork",
