@@ -1,5 +1,5 @@
 export type Project = {
-  slug: "influencer-monitor" | "atlas" | "granitos" | "visol-timesheet";
+  slug: "influencer-monitor" | "atlas" | "ad-classifier" | "grounded" | "granitos" | "visol-timesheet";
   number: string;
   title: string;
   category: string;
@@ -79,8 +79,65 @@ export const projects: Project[] = [
     sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
   },
   {
-    slug: "granitos",
+    slug: "ad-classifier",
     number: "03",
+    title: "Ad Classifier",
+    category: "Machine learning · NLP at DEUS",
+    context: "Telling sponsored posts from organic ones",
+    summary:
+      "A multilingual model that rates how likely an Instagram or TikTok post is to be undisclosed or disclosed advertising, for Influencer Monitor.",
+    cardLine: "From captions, on-screen text, and transcripts to an ad score.",
+    signal: "0.38 → 0.63",
+    signalLabel: "macro F1 on held-out posts, against the previous model",
+    role:
+      "I developed the new model behind Influencer Monitor's ad classifier at DEUS: dataset preparation, experiments, the final model, and its Azure ML scoring script.",
+    problem:
+      "Reviewers need to find posts that look like advertising, across many European languages, whether or not the creator discloses it. The previous model saw only part of each post and gave a single ad probability, so the uncertain middle was hard to use.",
+    approach: [
+      "Measured the production model on a labelled dataset first, so every experiment had a real baseline. Then reviewed and corrected labels where the errors pointed to inconsistent annotation.",
+      "Compared TF-IDF with hand-made disclosure features in eleven languages (sponsorship tags, gifted products, discount codes, age-gate hashtags), sentence embeddings, and a fine-tuned XLM-RoBERTa, all over captions, OCR text, and transcripts.",
+      "Shipped a blend of TF-IDF and XLM-RoBERTa with three classes (organic, questionable, ad), packaged as an Azure ML batch deployment with memory-aware dynamic batching, and checked that the deployed script reproduces the evaluated scores.",
+    ],
+    outcome:
+      "On the same held-out test set, macro F1 rose from 0.38 for the previous model to 0.63 for the blend (0.69 on posts with text), and the ad-versus-rest AUC reached 0.93. Posts the model is unsure about now land in a middle band for people to check.",
+    learning:
+      "The biggest gains came from looking closely at the data: a baseline, the labels, and the errors. Simple, explainable features still earned their place next to a transformer.",
+    workflow: ["Post text + OCR + transcript", "TF-IDF + XLM-R blend", "Ad score 0–10"],
+    methods: ["Python", "scikit-learn", "XLM-RoBERTa", "Transformers", "PyTorch", "Azure Machine Learning", "MLflow", "Evaluation"],
+    impactNote: "Figures come from my offline evaluation on a held-out test set of labelled posts.",
+  },
+  {
+    slug: "grounded",
+    number: "04",
+    title: "Grounded",
+    category: "Android app · Personal project",
+    context: "A calm daily planner",
+    summary:
+      "A native Android planner for intentions, moments in the day, focus timers, and a weekly recap, with optional two-way Google Calendar sync.",
+    cardLine: "Plan the day, focus on one thing, and look back kindly.",
+    signal: "Offline-first",
+    signalLabel: "no account, analytics, or ads",
+    role:
+      "I designed and built Grounded on my own, from product decisions and visual identity to the Android app, release pipeline, and website.",
+    problem:
+      "Most planners either stay as a list or take over the calendar. I wanted one calm place to write down what matters, give it time in the day, focus on it, and see what actually got done, without handing over my data.",
+    approach: [
+      "Built a native app with Kotlin, Jetpack Compose, and Room. Intentions have steps, notes, files, repeats, and reminders, and focus timers survive navigation, backgrounding, and process death.",
+      "Added two-way Google Calendar sync across several accounts and calendars, with offline queued changes and recovery for duplicate and recurring-event edge cases.",
+      "Added on-device semantic event search with a small bundled embedding model, so calendar text never leaves the phone. Releases are built and signed automatically from staging and production branches.",
+    ],
+    outcome:
+      "Grounded is a working app, with signed beta and release builds published automatically and a Google Play listing in preparation. Its impact is described qualitatively.",
+    learning:
+      "Calm software takes a lot of careful engineering underneath. Sync, time zones, and process death are where an app earns or loses trust.",
+    workflow: ["Write an intention", "Give it a moment", "Focus + recap"],
+    methods: ["Kotlin", "Jetpack Compose", "Room", "Google Calendar API", "ONNX Runtime", "GitHub Actions", "Product design"],
+    impactNote: "Grounded is a personal project.",
+    sourceUrl: "https://groundedtasks.vercel.app/",
+  },
+  {
+    slug: "granitos",
+    number: "05",
     title: "GranitOS",
     category: "Product engineering · Operations",
     context: "An operating system for the quarry",
@@ -108,7 +165,7 @@ export const projects: Project[] = [
   },
   {
     slug: "visol-timesheet",
-    number: "04",
+    number: "06",
     title: "Visol Timesheet",
     category: "Product engineering · Attendance",
     context: "Working time without guesswork",
