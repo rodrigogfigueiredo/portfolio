@@ -6,7 +6,7 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/work/ad-classifier",
+      "source": "/work/ad-classifier/",
       "destination": "/work/influencer-monitor/",
       "permanent": true
     }
