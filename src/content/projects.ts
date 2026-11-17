@@ -1,4 +1,22 @@
-export type Project = {
+type CaseStudy = {
+  problem: string;
+  approach: string[];
+  workflow: [string, string, string];
+  outcome: string;
+  impactNote?: string;
+  sourceUrl?: string;
+};
+
+export type ProjectPart = CaseStudy & {
+  id: string;
+  title: string;
+  intro: string;
+  signal: string;
+  signalLabel: string;
+  methods: string[];
+};
+
+type ProjectBase = {
   slug: "influencer-monitor" | "atlas" | "grounded" | "granitos" | "visol-timesheet";
   number: string;
   title: string;
@@ -9,15 +27,12 @@ export type Project = {
   signal: string;
   signalLabel: string;
   role: string;
-  problem: string;
-  approach: string[];
-  outcome: string;
   learning: string;
-  workflow: [string, string, string];
   methods: string[];
-  impactNote?: string;
-  sourceUrl?: string;
 };
+
+/** A case study is either one story, or a project told in separate parts. */
+export type Project = ProjectBase & (CaseStudy | { parts: ProjectPart[] });
 
 export const projects: Project[] = [
   {
@@ -27,28 +42,56 @@ export const projects: Project[] = [
     category: "Computer vision · NLP · GenAI at DEUS",
     context: "Making brand presence visible",
     summary:
-      "Computer vision, NLP, and generative AI pipelines that detect brands in Instagram and TikTok images and videos, and rate how likely each post is to be advertising.",
+      "Two parts of a platform for analysing Instagram and TikTok: detecting brands in images and videos, and rating how likely each post is to be advertising.",
     cardLine: "From social media posts to brands, timestamps, and an ad score.",
-    signal: "Images + video",
-    signalLabel: "brand detection across Instagram and TikTok",
+    signal: "2 parts",
+    signalLabel: "logo detection and ad classification",
     role:
-      "I’ve worked as a GenAI Engineer at DEUS on Influencer Monitor since September 2026, developing logo detection and brand identification, and the new model behind its ad classifier.",
-    problem:
-      "Analysing brand presence in social media means finding logos, branded products, and wordmarks in varied images and videos, then identifying the brand and where and when it appears. Reviewers also need to find posts that look like advertising, across many European languages, whether or not the creator discloses it.",
-    approach: [
-      "Build Python pipelines that combine OWLv2 object detection with multimodal models through Azure OpenAI to locate and identify brand appearances.",
-      "Develop asynchronous GPU batch inference on Azure Machine Learning, with video frame sampling and scene detection to produce bounding boxes and timestamps.",
-      "Create evaluation datasets and tooling to investigate missed brands and guide model and prompt improvements. Integrate Microsoft Foundry, Blob Storage, Service Bus, and Azure identity-based authentication.",
-      "Rebuild the ad classifier: measure the production model as a baseline, correct inconsistent labels, then blend TF-IDF with disclosure features in eleven languages and a fine-tuned XLM-RoBERTa over captions, OCR text, and transcripts. Deploy it as an Azure ML batch endpoint with three classes: organic, questionable, and ad.",
+      "I’ve worked as a GenAI Engineer at DEUS on Influencer Monitor since September 2026. I develop its logo detection and brand identification, and I built the new model behind its ad classifier.",
+    parts: [
+      {
+        id: "logo-detection",
+        title: "Logo detection",
+        intro: "Finding brands in images and videos, and where and when they appear.",
+        signal: "Images + video",
+        signalLabel: "brands located with bounding boxes and timestamps",
+        problem:
+          "Analysing brand presence in social media means finding logos, branded products, and wordmarks in varied images and videos, then identifying the brand and where and when it appears.",
+        approach: [
+          "Build Python pipelines that combine OWLv2 object detection with multimodal models through Azure OpenAI to locate and identify brand appearances.",
+          "Develop asynchronous GPU batch inference on Azure Machine Learning, with video frame sampling and scene detection to produce bounding boxes and timestamps.",
+          "Create evaluation datasets and tooling to investigate missed brands and guide model and prompt improvements. Integrate Microsoft Foundry, Blob Storage, Service Bus, and Azure identity-based authentication.",
+        ],
+        workflow: ["Sample media", "Locate + identify brands", "Boxes + timestamps"],
+        outcome:
+          "My ongoing work covers brand detections with bounding boxes and video timestamps, alongside evaluation tooling to measure detection quality and investigate missed brands.",
+        methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "Azure Machine Learning", "Microsoft Foundry", "Blob Storage", "Service Bus"],
+        impactNote: "Reflects my current role, which began in September 2026.",
+        sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
+      },
+      {
+        id: "ad-classifier",
+        title: "Ad classifier",
+        intro: "Rating how likely each post is to be advertising, across many European languages.",
+        signal: "0.38 → 0.63",
+        signalLabel: "macro F1 on held-out posts, against the previous model",
+        problem:
+          "Reviewers need to find posts that look like advertising, whether or not the creator discloses it. The previous model saw only part of each post and gave a single ad probability, so the uncertain middle was hard to use.",
+        approach: [
+          "Measured the production model on a labelled dataset first, so every experiment had a real baseline. Then reviewed and corrected labels where the errors pointed to inconsistent annotation.",
+          "Compared TF-IDF with hand-made disclosure features in eleven languages (sponsorship tags, gifted products, discount codes, age-gate hashtags), sentence embeddings, and a fine-tuned XLM-RoBERTa, all over captions, OCR text, and transcripts.",
+          "Shipped a blend of TF-IDF and XLM-RoBERTa with three classes (organic, questionable, ad), packaged as an Azure ML batch deployment with memory-aware dynamic batching, and checked that the deployed script reproduces the evaluated scores.",
+        ],
+        workflow: ["Post text + OCR + transcript", "TF-IDF + XLM-R blend", "Ad score 0–10"],
+        outcome:
+          "On the same held-out test set, macro F1 rose from 0.38 for the previous model to 0.63 for the blend (0.69 on posts with text), and the ad-versus-rest AUC reached 0.93. Posts the model is unsure about now land in a middle band for people to check.",
+        methods: ["Python", "scikit-learn", "XLM-RoBERTa", "Transformers", "PyTorch", "Azure Machine Learning", "MLflow"],
+        impactNote: "Figures come from my offline evaluation on a held-out test set of labelled posts.",
+      },
     ],
-    outcome:
-      "My ongoing work covers brand detections with bounding boxes and video timestamps, alongside evaluation tooling to measure detection quality and investigate missed brands. On a held-out test set, the new ad classifier raised macro F1 from 0.38 to 0.63 (0.69 on posts with text), and posts it is unsure about now land in a middle band for people to check.",
     learning:
-      "My focus is the complete path from preparing media to locating a logo, identifying its brand, and evaluating the result. On the ad classifier, the biggest gains came from looking closely at the data, and simple, explainable features still earned their place next to a transformer.",
-    workflow: ["Sample media + text", "Detect brands + ads", "Boxes, timestamps + ad score"],
-    methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "XLM-RoBERTa", "scikit-learn", "Azure Machine Learning", "Microsoft Foundry", "Blob Storage", "Service Bus", "Evaluation"],
-    impactNote: "Project description reflects my current role, which began in September 2026. Ad classifier figures come from my offline evaluation on held-out labelled posts.",
-    sourceUrl: "https://www.linkedin.com/in/rodrigo-goncalves-figueiredo/details/experience/",
+      "Both parts come down to careful evaluation. In logo detection, the processing workflow around the model matters as much as the model itself. In the ad classifier, the biggest gains came from looking closely at the data, and simple, explainable features still earned their place next to a transformer.",
+    methods: ["Python", "OWLv2", "Multimodal AI", "Azure OpenAI", "XLM-RoBERTa", "scikit-learn", "Azure Machine Learning", "Evaluation"],
   },
   {
     slug: "atlas",

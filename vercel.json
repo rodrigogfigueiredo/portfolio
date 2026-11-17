@@ -7,7 +7,7 @@
   "redirects": [
     {
       "source": "/work/ad-classifier/",
-      "destination": "/work/influencer-monitor/",
+      "destination": "/work/influencer-monitor/#ad-classifier",
       "permanent": true
     }
   ]
