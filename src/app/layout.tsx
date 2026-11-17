@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Fraunces, Space_Grotesk, Space_Mono, Unbounded } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import "./globals.css";
+
+// Retro-futurist type: a wide display face, a quirky grotesk, a mono for labels, and a soft 70s serif for accents.
+const display = Unbounded({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-mono", display: "swap" });
+const serif = Fraunces({ subsets: ["latin"], style: ["italic"], axes: ["SOFT", "WONK"], variable: "--font-serif", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rodrigofigueiredo.vercel.app"),
@@ -21,7 +28,7 @@ const legacyRedirectScript = `if(window.location.hostname==='rodrigo-figueiredo.
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} ${serif.variable}`} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: legacyRedirectScript }} /><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body id="top">
         <SiteHeader />
