@@ -1,19 +1,58 @@
 import type { Project } from "@/content/projects";
 
+const STRIPES = ["var(--stripe-1)", "var(--stripe-2)", "var(--stripe-3)", "var(--stripe-4)", "var(--stripe-5)", "var(--stripe-6)"];
+
+// Scattered "dust" and a few four-point stars, placed by hand so the sky feels loose.
+const DUST: [number, number, number, boolean][] = [
+  [92, 70, 2.4, true], [168, 52, 1.6, false], [232, 96, 1.4, false], [286, 40, 2, false], [338, 118, 1.8, true], [410, 66, 1.5, false],
+  [452, 140, 2.2, false], [120, 150, 1.4, false], [204, 172, 1.8, false], [262, 150, 2.4, true], [318, 196, 1.4, false], [392, 210, 2.6, false],
+  [470, 228, 1.6, true], [70, 236, 1.6, false], [150, 260, 2, false], [236, 238, 1.4, false], [42, 120, 2.2, true], [486, 92, 1.4, false],
+];
+
+function Star({ x, y, size, color, className }: { x: number; y: number; size: number; color: string; className?: string }) {
+  const s = size;
+  return <path className={className} d={`M${x} ${y - s}C${x + s * 0.12} ${y - s * 0.12} ${x + s * 0.12} ${y - s * 0.12} ${x + s} ${y}C${x + s * 0.12} ${y + s * 0.12} ${x + s * 0.12} ${y + s * 0.12} ${x} ${y + s}C${x - s * 0.12} ${y + s * 0.12} ${x - s * 0.12} ${y + s * 0.12} ${x - s} ${y}C${x - s * 0.12} ${y - s * 0.12} ${x - s * 0.12} ${y - s * 0.12} ${x} ${y - s}Z`} fill={color} />;
+}
+
+/** Hero illustration: six concentric stripes sweeping in from the bottom left, a striped sun, and a starry sky. */
 export function LabArtwork() {
+  // All stripes share one corner centre (240, 410), so the curves stay concentric.
+  const stripePath = (i: number) => {
+    const x = 60 + 30 * i;
+    const r = 180 - 30 * i;
+    const top = 230 + 30 * i;
+    return `M${x} 600V${top + r}A${r} ${r} 0 0 1 ${x + r} ${top}H1800`;
+  };
   return (
     <div className="lab-art" aria-hidden="true">
-      <div className="lab-art__orbit lab-art__orbit--outer" />
-      <div className="lab-art__orbit lab-art__orbit--inner" />
-      <div className="lab-art__center">
-        <span className="lab-art__spark">✳</span>
-        <span>THE LAB</span>
-      </div>
-      <div className="lab-art__satellite lab-art__satellite--one"><span className="satellite-dot" /> Observe <span>01</span></div>
-      <div className="lab-art__satellite lab-art__satellite--two"><span className="satellite-dot" /> Make <span>02</span></div>
-      <div className="lab-art__satellite lab-art__satellite--three"><span className="satellite-dot" /> Learn <span>03</span></div>
-      <span className="lab-art__sparkle lab-art__sparkle--one">✦</span>
-      <span className="lab-art__sparkle lab-art__sparkle--two">✳</span>
+      <svg className="lab-art__svg" viewBox="0 0 520 600" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <mask id="sun-slits">
+            <rect width="520" height="600" fill="#fff" />
+            {[0, 1, 2, 3, 4].map((i) => <rect key={i} x="300" y={490 + i * (13 - i)} width="200" height={3 + i * 0.8} fill="#000" />)}
+          </mask>
+          <linearGradient id="stripe-fade" x1="0" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+            <stop offset=".8" stopColor="#fff" />
+            <stop offset="1" stopColor="#000" />
+          </linearGradient>
+          <mask id="stripe-fade-mask" maskUnits="userSpaceOnUse" x="-200" y="0" width="2200" height="600">
+            <rect x="-200" y="0" width="2200" height="600" fill="url(#stripe-fade)" />
+          </mask>
+          <clipPath id="sun-horizon"><rect x="300" y="400" width="200" height="154" /></clipPath>
+        </defs>
+        <g className="lab-art__dust">
+          {DUST.map(([x, y, r, warm]) => <circle key={`${x}-${y}`} cx={x} cy={y} r={r} fill={warm ? "var(--stripe-4)" : "var(--dust)"} />)}
+        </g>
+        <Star className="lab-art__twinkle" x={430} y={120} size={18} color="var(--stripe-4)" />
+        <Star className="lab-art__twinkle lab-art__twinkle--late" x={64} y={190} size={13} color="var(--star)" />
+        <Star x={312} y={252} size={8} color="var(--dust)" />
+        <g className="lab-art__stripes" mask="url(#stripe-fade-mask)">
+          {STRIPES.map((color, i) => <path key={color} className="lab-art__stripe" style={{ animationDelay: `${i * 90}ms` }} d={stripePath(i)} stroke={color} strokeWidth="26" fill="none" pathLength={1} />)}
+        </g>
+        <g clipPath="url(#sun-horizon)">
+          <circle className="lab-art__sun" cx="400" cy="484" r="64" fill="var(--sun)" mask="url(#sun-slits)" />
+        </g>
+      </svg>
       <span className="lab-art__corner">CURIOUS BY DESIGN ↗</span>
     </div>
   );
